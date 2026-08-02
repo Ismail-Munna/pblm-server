@@ -4,8 +4,7 @@
   "description": "",
   "license": "ISC",
   "author": "",
-  "type": "module",
-  "main": "server.ts",
+  "main": "dist/server.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "prisma generate --schema=prisma/schema && tsup",
