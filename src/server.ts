@@ -3,10 +3,11 @@ import app from "./app";
 import { prisma } from "./lib/prisma";
 import config from "./config/index";
 
-const PORT = config.port;
+const PORT = config.port || 5000;
 
 // Only start the HTTP server when running locally (not on Vercel serverless)
-if (process.env.NODE_ENV !== "production") {
+// Vercel sets the `VERCEL` environment variable to "1"
+if (!process.env.VERCEL) {
   const startServer = async () => {
     try {
       await prisma.$connect();
@@ -23,4 +24,5 @@ if (process.env.NODE_ENV !== "production") {
   startServer();
 }
 
+// Export the app instance for Vercel's serverless runtime
 export default app;
